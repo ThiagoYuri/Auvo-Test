@@ -1,5 +1,4 @@
 ﻿using CsvHelper.Configuration;
-using CsvHelper.Configuration.Attributes;
 using System.Globalization;
 
 namespace Auvo.RH.Models.Map

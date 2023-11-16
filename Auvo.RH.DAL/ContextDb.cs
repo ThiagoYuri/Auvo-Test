@@ -1,7 +1,6 @@
 ﻿using Auvo.RH.DAL.Models;
 using Auvo.RH.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace Auvo.RH.DAL
 {

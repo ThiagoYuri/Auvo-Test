@@ -1,18 +1,9 @@
-﻿using Auvo.RH.Models;
-using Auvo.RH.Services;
-using CsvHelper;
-using CsvHelper.Configuration;
-using Microsoft.AspNetCore.Hosting.Server;
+﻿using Auvo.RH.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.SqlServer.Server;
-using Microsoft.VisualBasic.FileIO;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection.PortableExecutable;
 
 namespace Auvo.RH.Controllers
 {
+
     public class AnalisePontoController : Controller
     {
         private AnalisePontoServices _analisePontoServices;
@@ -35,5 +26,16 @@ namespace Auvo.RH.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Relatorio()
+        {
+
+
+            return Ok("teste");
+        }
+
     }
+
+
 }

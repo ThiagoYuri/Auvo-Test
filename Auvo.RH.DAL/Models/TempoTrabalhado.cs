@@ -23,19 +23,22 @@ namespace Auvo.RH.Models
         [Required]
         public DateTime Saida { get; set; }
         [Required]
-        public DateTime AlmocoInic { get { return AlmocoInic; } 
+        public DateTime AlmocoInic
+        {
+            get { return AlmocoInic; }
             set
             {
-                if (DateTime.TryParse(AdicionarHorasDaString(value.ToString(),0), out DateTime horasDateTime))
-                   Data = Data.AddHours(horasDateTime.Hour).AddMinutes(horasDateTime.Minute);                
+                if (DateTime.TryParse(AdicionarHorasDaString(value.ToString(), 0), out DateTime horasDateTime))
+                    Data = Data.AddHours(horasDateTime.Hour).AddMinutes(horasDateTime.Minute);
                 else
                 {
                     Console.WriteLine("Formato de hora inválido.");
                 }
-            } }
+            }
+        }
 
         [Required]
-        public DateTime AlmocoFim { get; private set; } 
+        public DateTime AlmocoFim { get; private set; }
 
         [Required]
         public virtual Colaborador Colaborador { get; set; }
@@ -54,7 +57,7 @@ namespace Auvo.RH.Models
             }
             else
             {
-                 throw new Exception("Formato de horas inválido.");
+                throw new Exception("Formato de horas inválido.");
             }
         }
 
