@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auvo.RH", "Auvo.RH.csproj", "{AB5F5EDE-C8C2-439A-AD13-DA2F9C7122D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auvo.RH", "Auvo.RH.csproj", "{AB5F5EDE-C8C2-439A-AD13-DA2F9C7122D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auvo.Perfil", "..\Auvo.Perfil\Auvo.Perfil.csproj", "{1FA60A88-BF1A-4A0D-9112-B68F8E75F40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auvo.Perfil", "..\Auvo.Perfil\Auvo.Perfil.csproj", "{1FA60A88-BF1A-4A0D-9112-B68F8E75F40F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auvo.RH.DAL", "..\Auvo.RH.DAL\Auvo.RH.DAL.csproj", "{23692DB9-0D8B-451E-BD9D-D3467763515B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1FA60A88-BF1A-4A0D-9112-B68F8E75F40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FA60A88-BF1A-4A0D-9112-B68F8E75F40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FA60A88-BF1A-4A0D-9112-B68F8E75F40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23692DB9-0D8B-451E-BD9D-D3467763515B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23692DB9-0D8B-451E-BD9D-D3467763515B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23692DB9-0D8B-451E-BD9D-D3467763515B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23692DB9-0D8B-451E-BD9D-D3467763515B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
