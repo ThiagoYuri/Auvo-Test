@@ -1,7 +1,11 @@
 ﻿using Auvo.RH.Models;
+using Auvo.RH.Models.Dto.Analise;
 using Auvo.RH.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
+using System.Text.Json;
+using System.Xml;
 
 namespace Auvo.RH.Controllers
 {
@@ -50,9 +54,9 @@ namespace Auvo.RH.Controllers
         [HttpGet]
         public async Task<IActionResult> Relatorio()
         {
-
-
-            return Ok("teste");
+            IEnumerable<AnaliseDepartamentoDto> result = _analisePontoServices.Relatorio();
+            string jsonString = JsonSerializer.Serialize(result); 
+            return Ok(jsonString);
         }
 
     }

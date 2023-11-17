@@ -4,9 +4,9 @@ using System.Globalization;
 namespace Auvo.RH.Models.Map
 {
 
-    public sealed class ColaboradorMap : ClassMap<Colaborador>
+    public sealed class ColaboradorMapCsv : ClassMap<Colaborador>
     {
-        public ColaboradorMap()
+        public ColaboradorMapCsv()
         {
             AutoMap(CultureInfo.InvariantCulture);
             Map(m => m.Codigo).Name("Código");

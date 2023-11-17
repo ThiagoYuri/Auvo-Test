@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Auvo.RH.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Auvo.RH.DAL.Models
@@ -10,5 +11,7 @@ namespace Auvo.RH.DAL.Models
         public int Codigo { get; set; }
         [Required]
         public string Nome { get; set; }
+
+        public virtual List<Colaborador> Colaboradores { get; set; }
     }
 }

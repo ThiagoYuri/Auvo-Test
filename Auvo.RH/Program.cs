@@ -2,6 +2,7 @@ using Auvo.RH.DAL;
 using Auvo.RH.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ContextDb>(opt => opt.UseLazyLoadingProxies().UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Auvo;Data Source=THIAGOYURI;TrustServerCertificate=True"));
 
 builder.Services.AddScoped<AnalisePontoServices, AnalisePontoServices>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 var app = builder.Build();
 

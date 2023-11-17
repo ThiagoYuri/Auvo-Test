@@ -1,6 +1,8 @@
-﻿using Auvo.RH.DAL;
+﻿using AutoMapper;
+using Auvo.RH.DAL;
 using Auvo.RH.DAL.Models;
 using Auvo.RH.Models;
+using Auvo.RH.Models.Dto.Analise;
 using Auvo.RH.Models.Map;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -13,10 +15,11 @@ namespace Auvo.RH.Services
     public class AnalisePontoServices
     {
         private ContextDb _context;
-
-        public AnalisePontoServices(ContextDb context)
+        private IMapper _mapper;
+        public AnalisePontoServices(ContextDb context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async void AdicionarCSVBanco(List<IFormFile> files)
@@ -80,7 +83,7 @@ namespace Auvo.RH.Services
                 using (Stream stream = file.OpenReadStream())
                 using (var csv = new CsvReader(new StreamReader(stream), configuration))
                 {
-                    csv.Context.RegisterClassMap<ColaboradorMap>();
+                    csv.Context.RegisterClassMap<ColaboradorMapCsv>();
                     var colaboradores = csv.GetRecords<Colaborador>().ToList().Distinct().ToList();
 
                     // Inner left anti join usando LINQ
@@ -132,7 +135,7 @@ namespace Auvo.RH.Services
                 using (Stream stream = file.OpenReadStream())
                 using (var csv = new CsvReader(new StreamReader(stream), configuration))
                 {
-                    csv.Context.RegisterClassMap<TempoTrabalhadoMap>();
+                    csv.Context.RegisterClassMap<TempoTrabalhadoMapCsv>();
                     var tempoTrabalhados = csv.GetRecords<TempoTrabalhado>().ToList().Distinct().ToList();
 
 
@@ -178,5 +181,15 @@ namespace Auvo.RH.Services
 
         }
 
+
+        public IEnumerable<AnaliseDepartamentoDto> Relatorio()
+        {
+            List<Colaborador> result = _context.Colaboradores.ToList();
+            if (!result.IsNullOrEmpty())
+            {
+                return _mapper.Map<List<AnaliseDepartamentoDto>>(result);
+            }
+            return null;
+        }
     }
 }

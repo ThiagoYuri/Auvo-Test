@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 namespace Auvo.RH.Models.Map
 {
 
-    public sealed class TempoTrabalhadoMap : ClassMap<TempoTrabalhado>
+    public sealed class TempoTrabalhadoMapCsv : ClassMap<TempoTrabalhado>
     {
-        public TempoTrabalhadoMap()
+        public TempoTrabalhadoMapCsv()
         {
             AutoMap(CultureInfo.InvariantCulture);
             Map(m => m.PK_Colaborador).Name("Código");
