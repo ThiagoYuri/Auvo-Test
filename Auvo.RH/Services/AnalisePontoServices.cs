@@ -24,23 +24,31 @@ namespace Auvo.RH.Services
             foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file.FileName);
+                string[] words = fileName.Split('-');
+                string nomeDepartamento = words[0];
+                string ano = words[words.Length - 1].Split('.')[0];
+
+
 
                 #region Validação
                 if (string.Equals(fileName, ".csv", StringComparison.OrdinalIgnoreCase))
                     throw new Exception("Erro: Arquivos que não são .csv forám encontrados");
                 #endregion
 
-                string nomeDepartamento = fileName.Split('-')[0];
+
+
+                #region Criar Departamento
                 //Criar Departamento
                 if (!(_context.Departamento.Any(dep => dep.Nome == nomeDepartamento)))
                 {
                     _context.Departamento.Add(new Departamento() { Nome = nomeDepartamento });
                     _context.SaveChanges();
                 }
+                #endregion
+                
                 var departamento = _context.Departamento.First(dep => dep.Nome == nomeDepartamento);
 
-
-
+                
                 //Criar Colaborador e TempoTrabalhado
                 if (file != null && file.Length > 0)
                 {
@@ -82,6 +90,7 @@ namespace Auvo.RH.Services
                     }
                     #endregion
 
+                    
 
                     #region  Salvar TempoTrabalhado
                     using (Stream stream = file.OpenReadStream())
@@ -89,6 +98,16 @@ namespace Auvo.RH.Services
                     {
                         csv.Context.RegisterClassMap<TempoTrabalhadoMap>();
                         var tempoTrabalhados = csv.GetRecords<TempoTrabalhado>().ToList().Distinct().ToList();
+
+
+                        tempoTrabalhados.ToList().ForEach(tempTrab =>
+                        {
+                            tempTrab.Data = new DateTime(Convert.ToInt32(ano), tempTrab.Data.Month, tempTrab.Data.Day);
+                            tempTrab.Entrada = new DateTime(Convert.ToInt32(ano), tempTrab.Data.Month, tempTrab.Data.Day, tempTrab.Entrada.Hour, tempTrab.Entrada.Minute, tempTrab.Entrada.Second);
+                            tempTrab.Saida = new DateTime(Convert.ToInt32(ano), tempTrab.Data.Month, tempTrab.Data.Day, tempTrab.Saida.Hour, tempTrab.Saida.Minute, tempTrab.Saida.Second);                            
+                        });
+
+
 
                         // Inner left anti join usando LINQ
                         // Somente novos tempoTrabalhados
@@ -100,9 +119,9 @@ namespace Auvo.RH.Services
                              Colaborador = tempTrabNew.Colaborador,
                              Entrada = tempTrabNew.Entrada,
                              Saida = tempTrabNew.Saida,
-                             AlmocoInic = tempTrabNew.AlmocoInic,
-                             AlmocoFim = tempTrabNew.AlmocoFim,
-                             ValorHora = tempTrabNew.ValorHora
+                             Almoco = tempTrabNew.Almoco,
+                             ValorHora = tempTrabNew.ValorHora,
+                             Codigo = tempTrabNew.Codigo                             
                          })
                          .ToList();
 
@@ -116,9 +135,11 @@ namespace Auvo.RH.Services
 
                     }
                     #endregion
+                
                 }
             }
         }
+       
 
     }
 }
