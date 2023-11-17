@@ -184,7 +184,7 @@ namespace Auvo.RH.Services
 
         public IEnumerable<AnaliseDepartamentoDto> Relatorio()
         {
-            List<Colaborador> result = _context.Colaboradores.ToList();
+            List<Departamento> result = _context.Departamento.ToList();
             if (!result.IsNullOrEmpty())
             {
                 return _mapper.Map<List<AnaliseDepartamentoDto>>(result);
