@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace Auvo.RH.Models
 {
@@ -26,10 +27,11 @@ namespace Auvo.RH.Models
         [Required]
         public string Almoco { get; set; }
 
-        [Required]
+        [ForeignKey("PK_Colaborador")]
         public virtual Colaborador Colaborador { get; set; }
-
-
+        
+        [Required]
+        public int? PK_Colaborador { get; set; }
 
 
 
