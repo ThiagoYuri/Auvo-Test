@@ -18,4 +18,5 @@ EntityFrameworkCore: Framework de mapeamento objeto-relacional para o .NET. Faci
 
 ### Novas Features
 Adicionar exceções
+
 Ajustar retorno final
